@@ -1,3 +1,10 @@
+/*:
+ Partner Lab 1
+ 
+ Jeremy Chen & David Solis
+ 
+ 09/23/22
+ */
 //
 //  ContentView.swift
 //  Project1
