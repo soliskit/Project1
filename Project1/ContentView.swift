@@ -16,7 +16,11 @@ import SwiftUI
 
 struct ContentView: View {
     
-    let dogNames = [
+    private let columns = [
+        GridItem(.flexible()),
+        GridItem(.flexible())
+    ]
+    private let dogNames = [
         "Airedale Terrier",
         "American Foxhound",
         "Dutch Shepherd",
@@ -28,7 +32,7 @@ struct ContentView: View {
         "Scottish Terrier",
         "Tosa"
     ]
-    let dogDescriptions = [
+    private let dogDescriptions = [
         "The Airedale stands among the world's most versatile dog breeds and has distinguished himself as hunter, athlete, and companion.",
         "American Foxhounds are good-natured, low-maintenance hounds who get on well with kids, dogs, even cats, but come with special considerations for prospective owners.",
         "The Dutch Shepherd is a lively, athletic, alert and intelligent breed, and has retained its herding instinct for which it was originally developed.",
@@ -40,7 +44,7 @@ struct ContentView: View {
         "A solidly compact dog of vivid personality, the Scottish Terrier is an independent, confident companion of high spirits. Scotties have a dignified, almost-human character.",
         "The Tosa's temperament is marked by patience, composure, boldness and courage. He is normally a tranquil, quiet, and obedient dog, with a calm but vigilant demeanor."
     ]
-    lazy var dogs = Dictionary(uniqueKeysWithValues: zip(dogNames, dogDescriptions))
+    @State private var index = 0
     
     var body: some View {
         VStack {
