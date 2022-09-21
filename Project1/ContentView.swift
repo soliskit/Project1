@@ -18,6 +18,7 @@ struct ContentView: View {
     
     private let columns = [
         GridItem(.flexible()),
+        GridItem(.flexible()),
         GridItem(.flexible())
     ]
     private let dogNames = [
@@ -47,11 +48,21 @@ struct ContentView: View {
     @State private var index = 0
     
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundColor(.accentColor)
-            Text("Hello, world!")
+        LazyVStack {
+            Text("Tap on the dog to see description")
+            LazyVGrid(columns: columns, spacing: 20) {
+                ForEach(dogNames, id: \.self) { name in
+                    Image(name)
+                        .resizable()
+                        .scaledToFit()
+                        .onTapGesture {
+                            if let selected = dogNames.firstIndex(of: name) {
+                                index = selected
+                            }
+                        }
+                }
+            }
+            Text(dogDescriptions[index])
         }
         .padding()
     }
