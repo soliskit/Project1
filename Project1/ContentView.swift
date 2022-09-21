@@ -45,23 +45,30 @@ struct ContentView: View {
         "A solidly compact dog of vivid personality, the Scottish Terrier is an independent, confident companion of high spirits. Scotties have a dignified, almost-human character.",
         "The Tosa's temperament is marked by patience, composure, boldness and courage. He is normally a tranquil, quiet, and obedient dog, with a calm but vigilant demeanor."
     ]
+    // Selected dog array position, defaults to first dog
     @State private var index = 0
     
     var body: some View {
         LazyVStack {
+            // Title prompting user to select dog image before showing description
             Text("Tap on the dog to see description")
+            // Constrain images within a three column grid view
             LazyVGrid(columns: columns, spacing: 20) {
+                // Loop thru the dog array to construct Image view
                 ForEach(dogNames, id: \.self) { name in
+                    // Initialize dog images into a resizable container, preserving original aspect ratio
                     Image(name)
                         .resizable()
                         .scaledToFit()
                         .onTapGesture {
+                            // Update stored index based on selected dog image
                             if let selected = dogNames.firstIndex(of: name) {
                                 index = selected
                             }
                         }
                 }
             }
+            // Use the stored dog index to access dog description from array
             Text(dogDescriptions[index])
         }
         .padding()
